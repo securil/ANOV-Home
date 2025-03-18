@@ -1,4 +1,3 @@
-<!-- mp4.html -->
 <section class="video-section" id="video-section">
     <style>
         .video-section {
@@ -9,7 +8,8 @@
             overflow: hidden;
         }
 
-        .video-section::before, .video-section::after {
+        .video-section::before,
+        .video-section::after {
             content: '';
             position: absolute;
             width: 300px;
@@ -66,9 +66,9 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             margin: 0 auto;
             transition: all 0.5s ease;
-            /* 16:9 비율 유지 */
             height: 0;
             padding-bottom: 56.25%;
+            cursor: pointer;
         }
 
         .video-container:hover {
@@ -76,7 +76,7 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .video-player {
+        .video-player, .video-thumbnail, .play-button-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -86,16 +86,26 @@
             object-fit: cover;
         }
 
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.9);
+            opacity: 0.8;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+}
+
+
         @media (max-width: 992px) {
-            .video-section {
-                padding: 80px 0;
-            }
+            .video-section { padding: 80px 0; }
         }
 
         @media (max-width: 768px) {
-            .video-section {
-                padding: 60px 0;
-            }
+            .video-section { padding: 60px 0; }
         }
     </style>
 
@@ -111,11 +121,14 @@
         <div class="row">
             <div class="col-12" data-aos="fade-up">
                 <div class="video-container" id="videoContainer">
-                    <video id="videoPlayer" class="video-player" controls autoplay muted loop playsinline>
-                        <source src="/image/anov.mp4" type="video/mp4">
-                        <source src="/image/anov.webm" type="video/webm">
+                    <video id="videoPlayer" class="video-player" controls playsinline poster="../image/anov-thumbnail.jpg">
+                        <source src="./image/anov.mp4" type="video/mp4">
+                        <source src="./image/anov.webm" type="video/webm">
                         비디오를 재생할 수 없습니다. 브라우저가 비디오 태그를 지원하지 않습니다.
                     </video>
+                    <div class="play-button">
+                        <i class="fas fa-play fa-3x text-gradient"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,38 +136,48 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM 로드 완료, 비디오 플레이어 초기화');
-            
+            const videoContainer = document.getElementById('videoContainer');
             const videoPlayer = document.getElementById('videoPlayer');
+            const playButton = videoContainer.querySelector('.play-button');
             
-            if (videoPlayer) {
-                // 비디오가 로드되면 자동 재생 시작
-                videoPlayer.addEventListener('loadedmetadata', function() {
-                    console.log('비디오 메타데이터 로드됨, 길이:', videoPlayer.duration);
+            // 처음에는 버튼이 보이게 설정
+            playButton.style.opacity = '1';
+        
+            // 재생 및 일시정지 시 버튼 상태 설정
+            videoContainer.addEventListener('click', function() {
+                if (videoPlayer.paused) {
+                    videoPlayer.play();
+                    playButton.style.opacity = '0';
+                } else {
+                    videoPlayer.pause();
+                    playButton.style.opacity = '1';
+                }
+            });
+        
+            // 마우스가 움직이면 버튼이 나타남
+            let mouseTimeout;
+            videoContainer.addEventListener('mousemove', function() {
+                if (!videoPlayer.paused) {
+                    playButton.style.opacity = '1';
                     
-                    // 자동 재생 시도
-                    videoPlayer.play().then(function() {
-                        console.log('자동 재생 성공');
-                    }).catch(function(error) {
-                        console.log('자동 재생 실패:', error);
-                        // 음소거된 상태로 자동 재생됨 (autoplay muted 속성으로 인해)
-                    });
-                });
-                
-                // 비디오 오류 발생 시 로그 기록
-                videoPlayer.addEventListener('error', function(e) {
-                    console.error('비디오 로드 오류:', e);
-                });
-            } else {
-                console.error('비디오 플레이어 요소를 찾을 수 없습니다');
-            }
-            
-            // AOS 리프레시 (필요한 경우)
-            if (typeof AOS !== 'undefined') {
-                setTimeout(function() {
-                    AOS.refresh();
-                }, 100);
-            }
+                    clearTimeout(mouseTimeout);
+                    mouseTimeout = setTimeout(function() {
+                        playButton.style.opacity = '0';
+                    }, 1500); // 마우스를 1.5초 동안 움직이지 않으면 버튼 다시 숨김
+                }
+            });
+        
+            // 비디오가 끝나면 버튼을 다시 표시
+            videoPlayer.addEventListener('ended', function() {
+                playButton.style.opacity = '1';
+            });
         });
-    </script>
+        </script>
+        
+
+<!--
+    <div class="play-button">
+        <i class="fas fa-play fa-3x text-gradient"></i>
+    </div>
+    -->
 </section>
