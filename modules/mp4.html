@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANOV Video Player - Auto Play with Thumbnail</title>
+    <title>ANOV Video Player</title>
     <style>
         body {
             display: flex;
@@ -28,7 +28,7 @@
             display: none;
             width: 100%;
         }
-        #replayButton {
+        #playButton {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -37,27 +37,28 @@
             height: 80px;
             background-color: rgba(0,0,0,0.7);
             border-radius: 50%;
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        #replayButton:hover {
+        #playButton:hover {
             background-color: rgba(0,0,0,0.9);
         }
-        #replayButton::before {
-            content: '↺';
+        #playButton::before {
+            content: '▶';
             color: white;
             font-size: 40px;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
     <div class="video-container">
         <img id="thumbnail" src="image/anov.png" alt="Video Thumbnail">
-        <div id="replayButton"></div>
-        <video id="videoPlayer" controls muted>
+        <div id="playButton"></div>
+        <video id="videoPlayer" controls>
             <source src="image/anov.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -65,34 +66,21 @@
 
     <script>
         const thumbnail = document.getElementById('thumbnail');
+        const playButton = document.getElementById('playButton');
         const videoPlayer = document.getElementById('videoPlayer');
-        const replayButton = document.getElementById('replayButton');
-        let hasPlayed = false;
 
-        // 페이지 로드 시 1회만 자동 재생
-        window.addEventListener('load', () => {
-            if (!hasPlayed) {
-                thumbnail.style.display = 'none';
-                videoPlayer.style.display = 'block';
-                videoPlayer.play();
-                hasPlayed = true;
-            }
-        });
-
-        // 비디오 종료 시 썸네일과 리플레이 버튼 표시
-        videoPlayer.addEventListener('ended', () => {
-            thumbnail.style.display = 'block';
-            replayButton.style.display = 'flex';
-            videoPlayer.style.display = 'none';
-            videoPlayer.currentTime = 0;
-        });
-
-        // 리플레이 버튼 클릭 시 동작
-        replayButton.addEventListener('click', () => {
+        playButton.addEventListener('click', () => {
             thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
             videoPlayer.style.display = 'block';
             videoPlayer.play();
-            replayButton.style.display = 'none';
+        });
+
+        videoPlayer.addEventListener('ended', () => {
+            thumbnail.style.display = 'block';
+            playButton.style.display = 'flex';
+            videoPlayer.style.display = 'none';
+            videoPlayer.currentTime = 0;
         });
     </script>
 </body>
