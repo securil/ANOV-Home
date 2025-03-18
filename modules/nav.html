@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><span class="text-gradient">ANOV</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about-placeholder">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#creators-services-placeholder">Creators</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#business-services-placeholder">Business</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#case-studies-placeholder">Case Studies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pricing-placeholder">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#faq-placeholder">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary btn-sm ms-lg-3 px-3 py-1 mt-1 mt-lg-0" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <style>
+    .navbar {
+      transition: all 0.3s ease;
+      padding: 20px 0;
+      background-color: rgba(18, 18, 18, 0.8) !important;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+    
+    .navbar-scrolled {
+      padding: 10px 0;
+      background-color: rgba(10, 10, 10, 0.95) !important;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 1.8rem;
+    }
+    
+    .nav-link {
+      color: var(--light-color) !important;
+      font-weight: 500;
+      margin: 0 5px;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 5px 10px !important;
+    }
+    
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover:after, .nav-link.active:after {
+      width: 100%;
+    }
+    
+    .nav-link.btn {
+      border-radius: 20px;
+      margin-left: 10px;
+    }
+    
+    .nav-link.btn:hover:after {
+      width: 0;
+    }
+    
+    /* 모바일 대응 */
+    @media (max-width: 992px) {
+      .navbar-collapse {
+        background-color: rgba(10, 10, 10, 0.95);
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 10px;
+      }
+      
+      .nav-link {
+        padding: 10px !important;
+        margin: 5px 0;
+      }
+      
+      .nav-link.btn {
+        margin: 10px 0 5px;
+        display: inline-block;
+      }
+    }
+  </style>

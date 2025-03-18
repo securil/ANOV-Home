@@ -1,0 +1,163 @@
+:root {
+    --primary-color: #FE2C55; /* TikTok pink/red */
+    --secondary-color: #25F4EE; /* TikTok cyan */
+    --dark-color: #121212;
+    --darker-color: #0A0A0A;
+    --light-color: #f8f9fa;
+    --gray-color: #adb5bd;
+    --transition: all 0.3s ease;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 기본 스타일 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    overflow-x: hidden;
+}
+
+section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    bottom: 0;
+    left: 0;
+}
+
+.text-center .section-title:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 배경 효과 요소 */
+.bg-element {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.05;
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.bg-element-1 {
+    background-color: var(--primary-color);
+    width: 300px;
+    height: 300px;
+    top: 20%;
+    left: -150px;
+}
+
+.bg-element-2 {
+    background-color: var(--secondary-color);
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    right: -100px;
+}
+
+/* 버튼 스타일 */
+.btn-custom {
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--dark-color);
+}
+
+.btn-outline-light {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    color: var(--light-color);
+}
+
+.btn-custom:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-custom:hover:before {
+    left: 0;
+}
+
+/* 컨테이너 카드 스타일 */
+.card-base {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 30px;
+    transition: var(--transition);
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-base:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+    border-color: rgba(254, 44, 85, 0.3);
+}
+
+/* Micro animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(254, 44, 85, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0); }
+}

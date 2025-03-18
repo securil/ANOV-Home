@@ -1,0 +1,508 @@
+<section class="about-section py-5" id="about">
+    <div class="container">
+        <!-- 배경 요소 추가 -->
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        
+        <!-- 제목 섹션 -->
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="tiktok-icon mx-auto">
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <h2 class="section-title">ANOV <span class="text-gradient">소개</span></h2>
+            <p class="lead mb-4">틱톡 크리에이터와 브랜드의 성공적인 파트너십을 위한 완벽한 솔루션</p>
+        </div>
+        
+ <!-- 콘텐츠 섹션 -->
+<div class="row g-4">
+    <!-- 전체 너비 텍스트 콘텐츠 -->
+    <div class="col-12" data-aos="fade-up">
+        <div class="about-content-wrapper">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="about-card interactive-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="about-card-content card-content">
+                            <h3 class="about-card-title">틱톡 마케팅 전문가</h3>
+                            <p class="mb-0">
+                                ANOV는 틱톡 콘텐츠 제작 및 마케팅 전문 에이전시로, 크리에이터와 브랜드 간의 효과적인 협업을 통해
+                                Z세대를 타겟으로 한 바이럴 마케팅을 실현합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="about-card interactive-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="about-card-content card-content">
+                            <h3 class="about-card-title">AI 기반 데이터 솔루션</h3>
+                            <p class="mb-0">
+                                최신 트렌드 분석과 AI 기반 데이터 솔루션을 활용하여 브랜드에 최적화된 인플루언서를 매칭하고,
+                                틱톡 알고리즘을 고려한 콘텐츠 전략을 수립합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="about-card interactive-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="about-card-content card-content">
+                            <h3 class="about-card-title">크리에이터 성장 지원</h3>
+                            <p class="mb-0">
+                                또한 크리에이터의 지속적인 성장을 위한 전문적인 교육과 지원 시스템을 갖추고 있으며,
+                                다양한 브랜드와의 협업 기회를 제공합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+    <style>
+        /* 스타일 코드는 동일하게 유지합니다 */
+        .about-section {
+            position: relative;
+            padding: 100px 0;
+            overflow: hidden;
+            background-color: var(--darker-color);
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-image-box {
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            height: auto;
+            width: 100%;
+        }
+
+        .about-image-box img {
+            transition: transform 0.5s ease;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-image-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-stats-card {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: rgba(18, 18, 18, 0.9);
+            border: 1px solid rgba(254, 44, 85, 0.3);
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            z-index: 3;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-stat-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(254, 44, 85, 0.1);
+            color: var(--primary-color);
+            border-radius: 12px;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .about-card {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 25px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+            border-color: rgba(254, 44, 85, 0.3);
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.05) 0%, rgba(37, 244, 238, 0.05) 100%);
+        }
+
+        .about-card-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(37, 244, 238, 0.1));
+            color: var(--primary-color);
+            border-radius: 12px;
+            margin-right: 20px;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .about-card:hover .about-card-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(37, 244, 238, 0.2));
+        }
+
+        .about-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 992px) {
+            .about-section {
+                padding: 80px 0;
+            }
+
+            .about-stats-card {
+                bottom: -10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 60px 0;
+            }
+            
+            .about-card {
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 20px;
+            }
+            
+            .about-card-icon {
+                margin-right: 15px;
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .about-stats-card {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 20px;
+                width: 100%;
+            }
+            
+            .about-image-wrapper {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-card-icon {
+                width: 45px;
+                height: 45px;
+                min-width: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .about-card-title {
+                font-size: 1.1rem;
+            }
+        }
+        .about-image-wrapper {
+    position: relative;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.about-image-box {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+}
+
+.about-image-box img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.about-image-box:hover img {
+    transform: scale(1.05);
+}
+
+.floating-stat-card {
+    position: absolute;
+    background: rgba(18, 18, 18, 0.9);
+    border: 1px solid rgba(254, 44, 85, 0.3);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+}
+
+.stat-card-1 {
+    top: 10%;
+    right: -10%;
+    animation-delay: 0s;
+}
+
+.stat-card-2 {
+    bottom: 10%;
+    left: -10%;
+    animation-delay: 1s;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(254, 44, 85, 0.1);
+    color: var(--primary-color);
+    border-radius: 12px;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* 모바일 대응 추가 스타일 */
+@media (max-width: 992px) {
+    .floating-stat-card {
+        padding: 12px;
+    }
+    
+    .stat-card-1 {
+        top: 5%;
+        right: 0;
+    }
+    
+    .stat-card-2 {
+        bottom: 5%;
+        left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-image-wrapper {
+        margin-bottom: 60px;  /* 카드가 아래쪽으로 나올 수 있도록 여백 확보 */
+        padding: 10px 40px;   /* 양쪽에 여백을 주어 카드가 보이도록 함 */
+    }
+    
+    .stat-card-1 {
+        top: auto;
+        bottom: -50px;
+        right: 20%;
+    }
+    
+    .stat-card-2 {
+        bottom: -50px;
+        left: 20%;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-image-wrapper {
+        padding: 10px 30px;
+    }
+    
+    .floating-stat-card {
+        position: relative;
+        margin-top: 15px;
+        display: inline-block;
+        width: 48%;
+    }
+    
+    .stat-card-1, .stat-card-2 {
+        position: static;
+        margin-top: 20px;
+        animation: none;
+    }
+    
+    .about-image-box {
+        margin-bottom: 20px;
+    }
+    
+    .about-image-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+}
+/* 새 레이아웃용 스타일 */
+.about-content-wrapper {
+    padding: 20px 0;
+}
+
+.about-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 30px 25px;
+    height: 100%;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+    border-color: rgba(254, 44, 85, 0.3);
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.05) 0%, rgba(37, 244, 238, 0.05) 100%);
+}
+
+.about-card-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(37, 244, 238, 0.1));
+    color: var(--primary-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.about-card:hover .about-card-icon {
+    transform: scale(1.1) rotateY(180deg);
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(37, 244, 238, 0.2));
+}
+
+.about-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* 통계 카드 스타일 */
+.stats-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+    margin-bottom: 20px;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+    border-color: rgba(254, 44, 85, 0.3);
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.05) 0%, rgba(37, 244, 238, 0.05) 100%);
+}
+
+.stats-icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(254, 44, 85, 0.1);
+    color: var(--primary-color);
+    border-radius: 50%;
+    margin-right: 25px;
+    font-size: 1.8rem;
+    transition: var(--transition);
+}
+
+.stats-card:hover .stats-icon {
+    transform: scale(1.1);
+    background-color: rgba(254, 44, 85, 0.2);
+}
+
+.stats-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .about-card {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+    }
+    
+    .about-card-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
+    }
+    
+    .stats-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        margin-right: 20px;
+        font-size: 1.5rem;
+    }
+    
+    .stats-content h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-card {
+        padding: 20px 15px;
+    }
+    
+    .about-card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .stats-card {
+        padding: 20px;
+    }
+    
+    .stats-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        margin-right: 15px;
+        font-size: 1.3rem;
+    }
+    
+    .stats-content h2 {
+        font-size: 1.8rem;
+    }
+}
+    </style>
+</section>

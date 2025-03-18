@@ -1,0 +1,339 @@
+<!-- process.html -->
+<section class="process-section" id="process">
+    <style>
+        .process-section {
+            padding: 100px 0;
+            position: relative;
+            background-color: var(--darker-color, #0A0A0A);
+            color: var(--light-color, #f8f9fa);
+            overflow: hidden;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 244, 238, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .process-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(254, 44, 85, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .process-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            bottom: 0;
+            left: 0;
+        }
+
+        .text-center .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .process-wrapper {
+            position: relative;
+        }
+
+        .process-line {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .process-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow, 0 10px 30px rgba(0, 0, 0, 0.3));
+            border-color: rgba(254, 44, 85, 0.3);
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.05) 0%, rgba(37, 244, 238, 0.05) 100%);
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .process-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .process-step-number {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(37, 244, 238, 0.1));
+            color: var(--primary-color, #FE2C55);
+            border-radius: 50%;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-card:hover .process-step-number {
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(37, 244, 238, 0.2));
+            transform: scale(1.1);
+        }
+
+        .process-step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .process-step-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .process-feature-list {
+            text-align: left;
+            padding-left: 20px;
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .process-feature-list li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .process-feature-list li::before {
+            content: '•';
+            color: var(--secondary-color, #25F4EE);
+            position: absolute;
+            left: -18px;
+            top: 0;
+            font-size: 1.2rem;
+        }
+
+        .process-footer {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .process-footer-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(37, 244, 238, 0.1));
+            color: var(--primary-color, #FE2C55);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+
+        .process-collaboration {
+            display: flex;
+            align-items: center;
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 992px) {
+            .process-section {
+                padding: 80px 0;
+            }
+
+            .process-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .process-section {
+                padding: 60px 0;
+            }
+
+            .process-wrapper {
+                margin-top: 20px;
+            }
+
+            .process-card {
+                margin-bottom: 30px;
+                padding: 25px 20px;
+            }
+
+            .process-step-number {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .process-footer {
+                padding: 20px;
+            }
+
+            .process-collaboration {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .process-footer-icon {
+                margin: 0 auto 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .process-step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .process-step-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="tiktok-icon mx-auto">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h2 class="section-title mx-auto">ANOV <span class="text-gradient">업무 프로세스</span></h2>
+            <p class="lead w-75 mx-auto">ANOV와 함께하는 틱톡 마케팅 과정은 체계적이고 투명합니다. 각 단계마다 고객과 긴밀하게 소통하며 최상의 결과를 이끌어냅니다.</p>
+        </div>
+
+        <div class="process-wrapper">
+            <div class="process-line d-none d-lg-block"></div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-card">
+                        <div class="process-step-number">1</div>
+                        <h3 class="process-step-title">전략 컨설팅</h3>
+                        <p class="process-step-description">브랜드와 제품, 목표 고객을 심층 분석하여 맞춤형 틱톡 마케팅 전략을 수립합니다.</p>
+                        <ul class="process-feature-list">
+                            <li>시장 및 경쟁사 분석</li>
+                            <li>대상 고객 페르소나 정의</li>
+                            <li>콘텐츠 전략 방향 설정</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-card">
+                        <div class="process-step-number">2</div>
+                        <h3 class="process-step-title">크리에이터 매칭</h3>
+                        <p class="process-step-description">AI 데이터 분석을 통해 브랜드에 최적화된 틱톡 크리에이터를 선정합니다.</p>
+                        <ul class="process-feature-list">
+                            <li>인플루언서 성향 분석</li>
+                            <li>팔로워 특성 및 참여도 확인</li>
+                            <li>브랜드 적합성 평가</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-card">
+                        <div class="process-step-number">3</div>
+                        <h3 class="process-step-title">콘텐츠 제작</h3>
+                        <p class="process-step-description">브랜드 메시지와 틱톡 트렌드를 결합한 매력적인 콘텐츠를 기획하고 제작합니다.</p>
+                        <ul class="process-feature-list">
+                            <li>트렌드 기반 창의적 기획</li>
+                            <li>크리에이터 콘텐츠 가이드</li>
+                            <li>전문 제작 지원</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-card">
+                        <div class="process-step-number">4</div>
+                        <h3 class="process-step-title">실행 및 최적화</h3>
+                        <p class="process-step-description">캠페인을 실행하고 실시간 데이터를 바탕으로 지속적인 최적화를 진행합니다.</p>
+                        <ul class="process-feature-list">
+                            <li>실시간 성과 모니터링</li>
+                            <li>데이터 기반 최적화</li>
+                            <li>상세 결과 분석 및 리포트</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="process-footer mt-5" data-aos="fade-up">
+            <div class="process-collaboration">
+                <div class="process-footer-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div>
+                    <h4 class="mb-2">클라이언트와의 소통</h4>
+                    <p class="mb-0">각 단계마다 클라이언트와 긴밀하게 소통하며, 투명한 보고 시스템을 통해 캠페인의 진행 상황과 성과를 실시간으로 공유합니다. 플랫폼 트렌드 변화에 따라 신속하게 전략을 조정하여 항상 최상의 결과를 도출합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                setTimeout(function() {
+                    AOS.refresh();
+                }, 100);
+            }
+        });
+    </script>
+</section>

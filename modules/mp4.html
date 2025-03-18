@@ -1,0 +1,160 @@
+<!-- mp4.html -->
+<section class="video-section" id="video-section">
+    <style>
+        .video-section {
+            padding: 100px 0;
+            position: relative;
+            background-color: #0A0A0A;
+            color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .video-section::before, .video-section::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .video-section::before {
+            top: -100px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(254, 44, 85, 0.1) 0%, transparent 70%);
+        }
+
+        .video-section::after {
+            bottom: -100px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(37, 244, 238, 0.1) 0%, transparent 70%);
+        }
+
+        .video-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, #FE2C55, #25F4EE);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #FE2C55, #25F4EE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin: 0 auto;
+            transition: all 0.5s ease;
+            /* 16:9 비율 유지 */
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+
+        .video-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 992px) {
+            .video-section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="tiktok-icon mx-auto">
+                <i class="fas fa-play"></i>
+            </div>
+            <h2 class="section-title mx-auto">ANOV <span class="text-gradient">소개 영상</span></h2>
+            <p class="lead w-75 mx-auto">틱톡 마케팅의 새로운 패러다임을 제시하는 ANOV의 이야기를 만나보세요</p>
+        </div>
+
+        <div class="row">
+            <div class="col-12" data-aos="fade-up">
+                <div class="video-container" id="videoContainer">
+                    <video id="videoPlayer" class="video-player" controls autoplay muted loop playsinline>
+                        <source src="/image/anov.mp4" type="video/mp4">
+                        <source src="/image/anov.webm" type="video/webm">
+                        비디오를 재생할 수 없습니다. 브라우저가 비디오 태그를 지원하지 않습니다.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM 로드 완료, 비디오 플레이어 초기화');
+            
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            if (videoPlayer) {
+                // 비디오가 로드되면 자동 재생 시작
+                videoPlayer.addEventListener('loadedmetadata', function() {
+                    console.log('비디오 메타데이터 로드됨, 길이:', videoPlayer.duration);
+                    
+                    // 자동 재생 시도
+                    videoPlayer.play().then(function() {
+                        console.log('자동 재생 성공');
+                    }).catch(function(error) {
+                        console.log('자동 재생 실패:', error);
+                        // 음소거된 상태로 자동 재생됨 (autoplay muted 속성으로 인해)
+                    });
+                });
+                
+                // 비디오 오류 발생 시 로그 기록
+                videoPlayer.addEventListener('error', function(e) {
+                    console.error('비디오 로드 오류:', e);
+                });
+            } else {
+                console.error('비디오 플레이어 요소를 찾을 수 없습니다');
+            }
+            
+            // AOS 리프레시 (필요한 경우)
+            if (typeof AOS !== 'undefined') {
+                setTimeout(function() {
+                    AOS.refresh();
+                }, 100);
+            }
+        });
+    </script>
+</section>

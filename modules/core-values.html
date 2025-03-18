@@ -1,0 +1,193 @@
+<section class="core-values" id="core-values">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title mx-auto">ANOV의 핵심 가치</h2>
+            <p class="lead w-75 mx-auto">틱톡 마케팅에 대한 우리의 접근 방식을 이끄는 핵심 원칙입니다.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-card interactive-card">
+                    <div class="value-icon-wrap">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                    <h3 class="mb-3">트렌드 선도</h3>
+                    <p>틱톡 내 최신 트렌드와 알고리즘 변화를 지속적으로 연구하여 항상 한발 앞선 마케팅 전략을 제공합니다.</p>
+                    <div class="value-hover-content">
+                        <ul class="mt-3">
+                            <li>지속적인 트렌드 모니터링</li>
+                            <li>알고리즘 분석</li>
+                            <li>선제적 전략 개발</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-card interactive-card">
+                    <div class="value-icon-wrap">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                    </div>
+                    <h3 class="mb-3">진정성 있는 협업</h3>
+                    <p>크리에이터의 개성과 브랜드의 가치가 조화롭게 어우러지는 진정성 있는 파트너십을 지향합니다.</p>
+                    <div class="value-hover-content">
+                        <ul class="mt-3">
+                            <li>창의적 자유와 균형</li>
+                            <li>브랜드 메시지 통합성</li>
+                            <li>시청자 신뢰 유지</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-card interactive-card">
+                    <div class="value-icon-wrap">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                    <h3 class="mb-3">데이터 기반 결정</h3>
+                    <p>모든 캠페인은 철저한 데이터 분석을 기반으로 기획되고 최적화되어 최고의 ROI를 보장합니다.</p>
+                    <div class="value-hover-content">
+                        <ul class="mt-3">
+                            <li>성과 지표 분석</li>
+                            <li>타겟 오디언스 인사이트 활용</li>
+                            <li>지속적인 최적화</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 스타일 코드는 동일하게 유지합니다 */
+        .core-values {
+            background-color: var(--dark-color);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .core-values:before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(254, 44, 85, 0.1) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .value-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 40px 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: rgba(254, 44, 85, 0.3);
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.05) 0%, rgba(37, 244, 238, 0.05) 100%);
+        }
+
+        .value-card:hover:after {
+            transform: scaleX(1);
+        }
+
+        .value-icon-wrap {
+            margin-bottom: 25px;
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(37, 244, 238, 0.1));
+            color: var(--primary-color);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(37, 244, 238, 0.2));
+        }
+
+        .value-hover-content {
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover .value-hover-content {
+            height: auto;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .value-hover-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .value-hover-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 992px) {
+            .core-values {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .core-values {
+                padding: 60px 0;
+            }
+            
+            .core-values .lead.w-75 {
+                width: 100% !important;
+            }
+            
+            .value-card {
+                padding: 30px 20px;
+                margin-bottom: 30px;
+            }
+            
+            /* 모바일에서는 호버 컨텐츠 항상 표시 */
+            .value-hover-content {
+                height: auto;
+                opacity: 1;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</section>

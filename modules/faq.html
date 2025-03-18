@@ -1,0 +1,493 @@
+<!-- faq.html -->
+<section class="faq-section" id="faq">
+    <style>
+        .faq-section {
+            padding: 100px 0;
+            position: relative;
+            background-color: var(--dark-color, #121212);
+            color: var(--light-color, #f8f9fa);
+            overflow: hidden;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 244, 238, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .faq-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            bottom: 0;
+            left: 0;
+        }
+
+        .text-center .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .faq-category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            gap: 10px;
+        }
+
+        .faq-category-tab {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            color: var(--light-color, #f8f9fa);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .faq-category-tab:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .faq-category-tab.active {
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            border-color: transparent;
+            color: white;
+        }
+
+        .faq-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(254, 44, 85, 0.3);
+            box-shadow: var(--box-shadow, 0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        .faq-button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            padding: 20px 25px;
+            color: var(--light-color, #f8f9fa);
+            font-weight: 600;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-button::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            color: var(--secondary-color, #25F4EE);
+        }
+
+        .faq-button[aria-expanded="true"]::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-button:hover {
+            color: var(--primary-color, #FE2C55);
+        }
+
+        .faq-button span {
+            background: linear-gradient(90deg, var(--primary-color, #FE2C55), var(--secondary-color, #25F4EE));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-right: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .faq-collapse {
+            padding: 0 25px 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .faq-category {
+            display: none;
+        }
+
+        .faq-category.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .faq-search-wrapper {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .faq-search {
+            width: 100%;
+            padding: 15px 20px;
+            padding-left: 45px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--light-color, #f8f9fa);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-search:focus {
+            outline: none;
+            border-color: var(--primary-color, #FE2C55);
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(254, 44, 85, 0.1);
+        }
+
+        .faq-search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-cta {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .faq-cta-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.1), rgba(37, 244, 238, 0.1));
+            color: var(--primary-color, #FE2C55);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .faq-cta h3 {
+            margin-bottom: 15px;
+        }
+
+        .faq-cta p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-custom {
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color, #FE2C55);
+            border-color: var(--primary-color, #FE2C55);
+            color: white;
+        }
+
+        .btn-custom:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            z-index: -1;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom:hover:before {
+            left: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 992px) {
+            .faq-section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 60px 0;
+            }
+
+            .faq-button {
+                padding: 15px 20px;
+                font-size: 0.95rem;
+            }
+
+            .faq-collapse {
+                padding: 0 20px 15px;
+            }
+
+            .faq-category-tab {
+                font-size: 0.85rem;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .faq-button span {
+                font-size: 1rem;
+            }
+
+            .faq-button::after {
+                right: 15px;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="tiktok-icon mx-auto">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h2 class="section-title mx-auto">자주 묻는 <span class="text-gradient">질문</span></h2>
+            <p class="lead w-75 mx-auto">틱톡 마케팅에 대한 궁금증을 해결해 드립니다</p>
+        </div>
+
+        <div class="faq-search-wrapper" data-aos="fade-up">
+            <i class="fas fa-search faq-search-icon"></i>
+            <input type="text" class="faq-search" id="faqSearch" placeholder="질문 검색하기...">
+        </div>
+
+        <div class="faq-category-tabs" data-aos="fade-up">
+            <div class="faq-category-tab active" data-category="all">전체</div>
+            <div class="faq-category-tab" data-category="general">일반 정보</div>
+            <div class="faq-category-tab" data-category="service">서비스 안내</div>
+            <div class="faq-category-tab" data-category="pricing">가격 및 결제</div>
+            <div class="faq-category-tab" data-category="technical">기술 지원</div>
+        </div>
+
+        <div class="faq-category active" id="all-category" data-aos="fade-up">
+            <div class="accordion" id="faqAccordion">
+                <div class="faq-item">
+                    <button class="faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                        <span>Q.</span> 틱톡 마케팅은 어떤 비즈니스에 적합한가요?
+                    </button>
+                    <div id="faq1" class="collapse show" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>틱톡 마케팅은 Z세대와 밀레니얼 세대를 타겟으로 하는 대부분의 B2C 비즈니스에 효과적입니다. 특히 패션, 뷰티, 식품, 엔터테인먼트, 라이프스타일 분야의 브랜드에 높은 성과를 보이며, 최근에는 B2B 기업들도 브랜드 인지도 향상을 위해 틱톡을 활용하고 있습니다. ANOV는 귀사의 비즈니스 특성에 맞는 맞춤형 전략을 제안해 드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        <span>Q.</span> 틱톡 마케팅의 ROI는 어떻게 측정하나요?
+                    </button>
+                    <div id="faq2" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>ANOV는 각 캠페인의 목표에 따라 다양한 KPI를 설정하고 측정합니다. 노출수, 참여율(좋아요, 댓글, 공유), 프로필 방문, 링크 클릭, 해시태그 사용률 등의 기본 지표부터 웹사이트 트래픽, 전환율, 앱 설치, 매출 증가 등의 비즈니스 성과까지 투명하게 분석하여 보고합니다. 또한 AI 기반 분석 도구를 통해 브랜드 인지도, 호감도 변화 등 정성적 지표도 함께 제공합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        <span>Q.</span> 틱톡 마케팅은 어느 정도의 예산이 필요한가요?
+                    </button>
+                    <div id="faq3" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>틱톡 마케팅 예산은 캠페인 규모, 기간, 목표, 활용하는 전략(인플루언서, 광고, 챌린지 등)에 따라 달라집니다. 소규모 브랜드는 월 300만원 정도의 예산으로 시작할 수 있으며, 중대형 캠페인은 500만원에서 1천만원 이상의 예산이 필요할 수 있습니다. ANOV는 다양한 예산 규모에 맞는 최적의 전략을 제공하며, 초기 상담을 통해 귀사의 목표와 예산에 맞는 맞춤형 제안을 드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                        <span>Q.</span> 틱톡 마케팅 캠페인은 얼마나 걸리나요?
+                    </button>
+                    <div id="faq4" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>일반적인 틱톡 마케팅 캠페인은 기획부터 실행, 결과 분석까지 약 4-8주가 소요됩니다. 단발성 인플루언서 협업은 2-3주 내에 완료될 수 있으며, 대규모 해시태그 챌린지나 장기 브랜딩 캠페인은 2-3개월 이상 진행될 수 있습니다. ANOV는 초기 컨설팅 단계에서 일정을 명확히 제시하며, 신속하고 효율적인 프로세스로 최적의 타이밍에 캠페인을 론칭할 수 있도록 지원합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                        <span>Q.</span> 우리 브랜드에 맞는 틱톡 인플루언서는 어떻게 선정하나요?
+                    </button>
+                    <div id="faq5" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>ANOV는 인플루언서를 선정할 때 단순히 팔로워 수만 보지 않습니다. 인플루언서의 콘텐츠 스타일, 타겟 오디언스 구성, 과거 포스팅의 참여율, 브랜드 이미지와의 적합성 등을 종합적으로 분석하여 추천합니다. 또한 500명 이상의 검증된 틱톡 크리에이터 네트워크를 보유하고 있어 다양한 분야와 규모의 인플루언서 협업이 가능합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                        <span>Q.</span> 틱톡의 알고리즘이 자주 변경되는데, 이에 어떻게 대응하나요?
+                    </button>
+                    <div id="faq6" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>ANOV는 틱톡 알고리즘의 변화를 지속적으로 모니터링하고 분석합니다. 전담 연구팀이 매일 트렌드를 추적하고, 알고리즘 변화에 따른 콘텐츠 전략을 신속하게 조정합니다. 또한 틱톡 공식 파트너십을 통해 알고리즘 업데이트 정보를 선제적으로 파악하여 클라이언트에게 최적화된 전략을 제공합니다. 이러한 접근 방식을 통해 알고리즘 변화에도 안정적인 성과를 유지할 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                        <span>Q.</span> 계약 기간 및 해지 조건은 어떻게 되나요?
+                    </button>
+                    <div id="faq7" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>ANOV의 표준 계약은 3개월 단위로 진행되며, 프로젝트별 계약도 가능합니다. 계약 종료 30일 전까지 서면으로 해지 의사를 통보하지 않으면 자동 연장되는 방식입니다. 단, 서비스 품질에 불만족하시는 경우 1개월 내 100% 환불 보증 정책을 제공합니다. 모든 계약 조건은 사전에 투명하게 안내드리며, 고객의 상황에 맞게 유연하게 조정 가능합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                        <span>Q.</span> 다른 소셜 미디어 플랫폼과 통합된 마케팅도 가능한가요?
+                    </button>
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                        <span>Q.</span> 다른 소셜 미디어 플랫폼과 통합된 마케팅도 가능한가요?
+                    </button>
+                    <div id="faq8" class="collapse" data-bs-parent="#faqAccordion">
+                        <div class="faq-collapse">
+                            <p>네, ANOV는 틱톡을 중심으로 인스타그램, 유튜브, 페이스북 등 다양한 소셜 미디어 플랫폼을 아우르는 통합 마케팅 서비스를 제공합니다. 각 플랫폼의 특성을 고려한 맞춤형 콘텐츠 전략을 수립하고, 크로스 플랫폼 시너지를 극대화하는 방향으로 캠페인을 설계합니다. 콘텐츠를 효율적으로 재활용하고 일관된 브랜드 메시지를 전달하여 마케팅 효과를 높이는 동시에 비용 효율성도 확보합니다.</p>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="faq-cta" data-aos="fade-up">
+                    <div class="faq-cta-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>더 궁금한 점이 있으신가요?</h3>
+                    <p>여기서 찾지 못한 질문이 있거나 더 자세한 상담이 필요하시다면 언제든지 문의해 주세요. ANOV의 전문가가 빠르게 답변해 드립니다.</p>
+                    <a href="#contact" class="btn btn-primary btn-custom">
+                        <i class="fas fa-paper-plane me-2"></i>문의하기
+                    </a>
+                    </div>
+                    </div>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                    // AOS 리프레시
+                    if (typeof AOS !== 'undefined') {
+                        setTimeout(function() {
+                            AOS.refresh();
+                        }, 100);
+                    }
+                    
+                    // FAQ 카테고리 탭 기능
+                    const categoryTabs = document.querySelectorAll('.faq-category-tab');
+                    const categoryContents = document.querySelectorAll('.faq-category');
+                    
+                    categoryTabs.forEach(tab => {
+                        tab.addEventListener('click', function() {
+                            // 탭 활성화
+                            categoryTabs.forEach(t => t.classList.remove('active'));
+                            this.classList.add('active');
+                            
+                            // 카테고리 활성화
+                            const categoryId = this.getAttribute('data-category');
+                            categoryContents.forEach(content => content.classList.remove('active'));
+                            document.getElementById(categoryId + '-category').classList.add('active');
+                            
+                            // AOS 리프레시
+                            if (typeof AOS !== 'undefined') {
+                                setTimeout(function() {
+                                    AOS.refresh();
+                                }, 100);
+                            }
+                        });
+                    });
+                    
+                    // FAQ 검색 기능
+                    const searchInput = document.getElementById('faqSearch');
+                    const faqItems = document.querySelectorAll('.faq-item');
+                    
+                    if (searchInput) {
+                        searchInput.addEventListener('input', function() {
+                            const searchTerm = this.value.toLowerCase();
+                            
+                            faqItems.forEach(item => {
+                                const question = item.querySelector('.faq-button').textContent.toLowerCase();
+                                const answer = item.querySelector('.faq-collapse').textContent.toLowerCase();
+                                
+                                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                                    item.style.display = 'block';
+                                } else {
+                                    item.style.display = 'none';
+                                }
+                            });
+                        });
+                    }
+                    });
+                    </script>
+                    </section>
