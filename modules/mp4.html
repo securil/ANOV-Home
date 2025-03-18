@@ -1,4 +1,5 @@
-<section class=\"video-section\" id=\"video-section\">
+<!-- mp4.html - ANOV 소개 비디오 섹션 -->
+<section class="video-section" id="video-section">
     <style>
         .video-section {
             padding: 100px 0;
@@ -67,7 +68,7 @@
             margin: 0 auto;
             transition: all 0.5s ease;
             height: 0;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 비율 */
             cursor: pointer;
         }
 
@@ -76,8 +77,7 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .video-player,
-        .play-button {
+        .video-player {
             position: absolute;
             top: 0;
             left: 0;
@@ -88,6 +88,11 @@
         }
 
         .play-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -96,6 +101,14 @@
             opacity: 1;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button i {
+            background: linear-gradient(90deg, #FE2C55, #25F4EE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         @media (max-width: 992px) {
@@ -107,28 +120,24 @@
         }
     </style>
 
-    <div class=\"container\">
-        <div class=\"text-center mb-5\" data-aos=\"fade-up\">
-            <div class=\"tiktok-icon mx-auto\">
-                <i class=\"fas fa-play\"></i>
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="tiktok-icon mx-auto">
+                <i class="fas fa-play"></i>
             </div>
-            <h2 class=\"section-title mx-auto\">ANOV <span class=\"text-gradient\">소개 영상</span></h2>
-            <p class=\"lead w-75 mx-auto\">틱톡 마케팅의 새로운 패러다임을 제시하는 ANOV의 이야기를 만나보세요</p>
+            <h2 class="section-title mx-auto">ANOV <span class="text-gradient">소개 영상</span></h2>
+            <p class="lead w-75 mx-auto">틱톡 마케팅의 새로운 패러다임을 제시하는 ANOV의 이야기를 만나보세요</p>
         </div>
 
-        <div class=\"row\">
-            <div class=\"col-12\" data-aos=\"fade-up\">
-                <div class=\"video-container\" id=\"videoContainer\">
-                    <video id=\"videoPlayer\" class=\"video-player\" controls playsinline poster=\"./image/anov.png\">
-                        <video id="videoPlayer" class="video-player" controls autoplay muted loop playsinline>
-                            <source src="../anov.mp4" type="video/mp4">
-                        </video>
-                        
-
+        <div class="row">
+            <div class="col-12" data-aos="fade-up">
+                <div class="video-container" id="videoContainer">
+                    <video id="videoPlayer" class="video-player" controls playsinline poster="https://securil.github.io/ANOV-Home/image/anov.png">
+                        <source src="https://securil.github.io/ANOV-Home/image/anov.mp4" type="video/mp4">
                         비디오를 재생할 수 없습니다. 브라우저가 비디오 태그를 지원하지 않습니다.
                     </video>
-                    <div class=\"play-button\">
-                        <i class=\"fas fa-play text-gradient\"></i>
+                    <div class="play-button" id="playButton">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
             </div>
@@ -139,18 +148,36 @@
         document.addEventListener('DOMContentLoaded', function () {
             const videoContainer = document.getElementById('videoContainer');
             const videoPlayer = document.getElementById('videoPlayer');
-            const playButton = videoContainer.querySelector('.play-button');
+            const playButton = document.getElementById('playButton');
 
+            // 비디오가 로드되었는지 확인
+            videoPlayer.addEventListener('loadedmetadata', function() {
+                console.log('비디오가 로드되었습니다:', videoPlayer.duration);
+            });
+
+            // 비디오 로드 오류 확인
+            videoPlayer.addEventListener('error', function(e) {
+                console.error('비디오 로드 오류:', videoPlayer.error);
+                playButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+            });
+
+            // 클릭 이벤트 처리
             videoContainer.addEventListener('click', function () {
                 if (videoPlayer.paused) {
-                    videoPlayer.play();
-                    playButton.style.opacity = '0';
+                    videoPlayer.play().then(() => {
+                        playButton.style.opacity = '0';
+                    }).catch(err => {
+                        console.error('재생 오류:', err);
+                        // 자동 재생 정책으로 인한 오류 대응
+                        alert('비디오를 시작하려면 화면을 다시 클릭하세요.');
+                    });
                 } else {
                     videoPlayer.pause();
                     playButton.style.opacity = '1';
                 }
             });
 
+            // 마우스 이동 시 플레이 버튼 표시
             let mouseTimeout;
             videoContainer.addEventListener('mousemove', function () {
                 if (!videoPlayer.paused) {
@@ -162,6 +189,7 @@
                 }
             });
 
+            // 비디오 종료 시 플레이 버튼 표시
             videoPlayer.addEventListener('ended', function () {
                 playButton.style.opacity = '1';
             });
