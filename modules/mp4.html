@@ -145,54 +145,75 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const videoContainer = document.getElementById('videoContainer');
-            const videoPlayer = document.getElementById('videoPlayer');
-            const playButton = document.getElementById('playButton');
-
-            // 비디오가 로드되었는지 확인
-            videoPlayer.addEventListener('loadedmetadata', function() {
-                console.log('비디오가 로드되었습니다:', videoPlayer.duration);
+       document.addEventListener('DOMContentLoaded', function () {
+    const videoContainer = document.getElementById('videoContainer');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const playButton = document.getElementById('playButton');
+    
+    // 초기에는 비디오가 재생되지 않으므로 버튼 표시
+    playButton.style.opacity = '1';
+    
+    // 비디오가 로드되었는지 확인
+    videoPlayer.addEventListener('loadedmetadata', function() {
+        console.log('비디오가 로드되었습니다:', videoPlayer.duration);
+    });
+    
+    // 비디오 로드 오류 확인
+    videoPlayer.addEventListener('error', function(e) {
+        console.error('비디오 로드 오류:', videoPlayer.error);
+        playButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+    });
+    
+    // 클릭 이벤트 처리
+    videoContainer.addEventListener('click', function () {
+        if (videoPlayer.paused) {
+            videoPlayer.play().then(() => {
+                // 재생 시작하면 버튼 숨김
+                playButton.style.opacity = '0';
+            }).catch(err => {
+                console.error('재생 오류:', err);
+                // 자동 재생 정책으로 인한 오류 대응
+                alert('비디오를 시작하려면 화면을 다시 클릭하세요.');
             });
-
-            // 비디오 로드 오류 확인
-            videoPlayer.addEventListener('error', function(e) {
-                console.error('비디오 로드 오류:', videoPlayer.error);
-                playButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
-            });
-
-            // 클릭 이벤트 처리
-            videoContainer.addEventListener('click', function () {
-                if (videoPlayer.paused) {
-                    videoPlayer.play().then(() => {
-                        playButton.style.opacity = '0';
-                    }).catch(err => {
-                        console.error('재생 오류:', err);
-                        // 자동 재생 정책으로 인한 오류 대응
-                        alert('비디오를 시작하려면 화면을 다시 클릭하세요.');
-                    });
-                } else {
-                    videoPlayer.pause();
-                    playButton.style.opacity = '1';
-                }
-            });
-
-            // 마우스 이동 시 플레이 버튼 표시
-            let mouseTimeout;
-            videoContainer.addEventListener('mousemove', function () {
-                if (!videoPlayer.paused) {
-                    playButton.style.opacity = '1';
-                    clearTimeout(mouseTimeout);
-                    mouseTimeout = setTimeout(function () {
-                        playButton.style.opacity = '0';
-                    }, 1500);
-                }
-            });
-
-            // 비디오 종료 시 플레이 버튼 표시
-            videoPlayer.addEventListener('ended', function () {
-                playButton.style.opacity = '1';
-            });
-        });
+        } else {
+            videoPlayer.pause();
+            // 일시정지 시에는 버튼 표시
+            playButton.style.opacity = '1';
+        }
+    });
+    
+    // 마우스 이동 시 항상 플레이 버튼 표시, 그리고 일정 시간 후 숨김
+    let mouseTimeout;
+    videoContainer.addEventListener('mousemove', function () {
+        // 마우스 움직임이 감지되면 버튼 표시
+        playButton.style.opacity = '1';
+        
+        // 이전 타이머가 있다면 초기화
+        clearTimeout(mouseTimeout);
+        
+        // 2초 후에 버튼 숨김 (재생 중일 때만)
+        if (!videoPlayer.paused) {
+            mouseTimeout = setTimeout(function () {
+                playButton.style.opacity = '0';
+            }, 2000);
+        }
+    });
+    
+    // 마우스가 비디오 영역을 벗어나면 버튼 숨김 (재생 중일 때만)
+    videoContainer.addEventListener('mouseleave', function() {
+        if (!videoPlayer.paused) {
+            playButton.style.opacity = '0';
+        }
+    });
+    
+    // 비디오 종료 시에도 버튼을 숨긴 상태 유지
+    // 끝난 후에도 버튼이 안 보이게 하되, 마우스를 움직이면 보이게 됨
+    videoPlayer.addEventListener('ended', function () {
+        playButton.style.opacity = '0';
+        
+        // 비디오 종료 시 아이콘 변경 (선택 사항)
+        playButton.innerHTML = '<i class="fas fa-redo"></i>';
+    });
+});
     </script>
 </section>
