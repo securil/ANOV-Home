@@ -102,35 +102,47 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const videoContainer = document.getElementById('videoContainer');
-            const videoPlayer = document.getElementById('videoPlayer');
-            const playButton = videoContainer.querySelector('.play-button');
+    document.addEventListener('DOMContentLoaded', function () {
+        const videoContainer = document.getElementById('videoContainer');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playButton = videoContainer.querySelector('.play-button');
 
-            videoContainer.addEventListener('click', function () {
-                if (videoPlayer.paused) {
-                    videoPlayer.play();
-                    playButton.style.opacity = '0';
-                } else {
-                    videoPlayer.pause();
-                    playButton.style.opacity = '1';
-                }
-            });
-
-            let mouseTimeout;
-            videoContainer.addEventListener('mousemove', function () {
-                if (!videoPlayer.paused) {
-                    playButton.style.opacity = '1';
-                    clearTimeout(mouseTimeout);
-                    mouseTimeout = setTimeout(function () {
-                        playButton.style.opacity = '0';
-                    }, 1500);
-                }
-            });
-
-            videoPlayer.addEventListener('ended', function () {
+        // 클릭과 터치 이벤트 모두 처리
+        const togglePlay = function (event) {
+            event.preventDefault();
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+                playButton.style.opacity = '0';
+            } else {
+                videoPlayer.pause();
                 playButton.style.opacity = '1';
-            });
+            }
+        };
+
+        // 클릭 이벤트 (PC)
+        videoContainer.addEventListener('click', togglePlay);
+        
+        // 터치 이벤트 (모바일)
+        videoContainer.addEventListener('touchstart', togglePlay);
+
+        let mouseTimeout;
+        const showButton = function () {
+            if (!videoPlayer.paused) {
+                playButton.style.opacity = '1';
+                clearTimeout(mouseTimeout);
+                mouseTimeout = setTimeout(function () {
+                    playButton.style.opacity = '0';
+                }, 1500);
+            }
+        };
+
+        videoContainer.addEventListener('mousemove', showButton);
+        videoContainer.addEventListener('touchmove', showButton);
+
+        videoPlayer.addEventListener('ended', function () {
+            playButton.style.opacity = '1';
         });
-    </script>
+    });
+</script>
+
 </section>
