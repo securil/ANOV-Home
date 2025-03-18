@@ -1,4 +1,4 @@
-<section class=\"video-section\" id=\"video-section\">
+<section class="video-section" id="video-section">
     <style>
         .video-section {
             padding: 100px 0;
@@ -6,28 +6,6 @@
             background-color: #0A0A0A;
             color: #f8f9fa;
             overflow: hidden;
-        }
-
-        .video-section::before,
-        .video-section::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .video-section::before {
-            top: -100px;
-            right: -100px;
-            background: radial-gradient(circle, rgba(254, 44, 85, 0.1) 0%, transparent 70%);
-        }
-
-        .video-section::after {
-            bottom: -100px;
-            left: -100px;
-            background: radial-gradient(circle, rgba(37, 244, 238, 0.1) 0%, transparent 70%);
         }
 
         .video-section .container {
@@ -71,11 +49,6 @@
             cursor: pointer;
         }
 
-        .video-container:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-
         .video-player,
         .play-button {
             position: absolute;
@@ -107,24 +80,21 @@
         }
     </style>
 
-    <div class=\"container\">
-        <div class=\"text-center mb-5\" data-aos=\"fade-up\">
-            <div class=\"tiktok-icon mx-auto\">
-                <i class=\"fas fa-play\"></i>
-            </div>
-            <h2 class=\"section-title mx-auto\">ANOV <span class=\"text-gradient\">소개 영상</span></h2>
-            <p class=\"lead w-75 mx-auto\">틱톡 마케팅의 새로운 패러다임을 제시하는 ANOV의 이야기를 만나보세요</p>
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title mx-auto">ANOV <span class="text-gradient">소개 영상</span></h2>
+            <p class="lead w-75 mx-auto">틱톡 마케팅의 새로운 패러다임을 제시하는 ANOV의 이야기를 만나보세요</p>
         </div>
 
-        <div class=\"row\">
-            <div class=\"col-12\" data-aos=\"fade-up\">
-                <div class=\"video-container\" id=\"videoContainer\">
-                    <video id=\"videoPlayer\" class=\"video-player\" controls playsinline poster=\"../image/anov.png\">
-                        <source src=\"../image/anov.mp4\" type=\"video/mp4\">
+        <div class="row">
+            <div class="col-12">
+                <div class="video-container" id="videoContainer">
+                    <video id="videoPlayer" class="video-player" controls playsinline poster="https://securil.github.io/ANOV-Home/image/anov.png">
+                        <source src="https://securil.github.io/ANOV-Home/image/anov.mp4" type="video/mp4">
                         비디오를 재생할 수 없습니다. 브라우저가 비디오 태그를 지원하지 않습니다.
                     </video>
-                    <div class=\"play-button\">
-                        <i class=\"fas fa-play text-gradient\"></i>
+                    <div class="play-button">
+                        <i class="fas fa-play text-gradient"></i>
                     </div>
                 </div>
             </div>
